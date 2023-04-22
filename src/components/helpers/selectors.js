@@ -5,7 +5,7 @@ export function getAppointmentsForDay(state, day) {
     return [];
   }
   const appointmentArray = filteredDays[0].appointments;
-  const fullAppoinments = appointmentArray.map((id) => state.appointments[id]);
+  const fullAppointments = appointmentArray.map((id) => state.appointments[id]);
 
-  return fullAppoinments;
+  return fullAppointments;
 }
