@@ -9,3 +9,19 @@ export function getAppointmentsForDay(state, day) {
 
   return fullAppointments;
 }
+
+export function getInterview(state, interview) {
+
+  
+  if (!interview || !interview.interviewer) {
+    return null;
+  }
+
+  const interviewerID = interview.interviewer;
+
+  const interviewer = state.interviewers[interviewerID];
+  // const interviewerObject = state.interviewers[interviewerID];<--Why no work?
+
+  return { ...interview, interviewer};
+  // return { ...interview, interviewer: interviewerObject }; <--WHy doesn't this work?
+}
