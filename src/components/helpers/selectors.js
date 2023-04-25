@@ -20,10 +20,8 @@ export function getInterview(state, interview) {
   const interviewerID = interview.interviewer;
 
   const interviewer = state.interviewers[interviewerID];
-  // const interviewerObject = state.interviewers[interviewerID];<--Why no work?
 
   return { ...interview, interviewer};
-  // return { ...interview, interviewer: interviewerObject }; <--Why doesn't this work?
 }
 
 export function getInterviewersForDay(state, day) {
