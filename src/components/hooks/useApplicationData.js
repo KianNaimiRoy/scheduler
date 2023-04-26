@@ -1,15 +1,26 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function useApplicationData(initial) {
+export default function useApplicationData() {
 
   const [state, setState] = useState({
     day: "Monday",
-    days: [],
+    days: [], //might be better as an object
     appointments: {},
-    interviewers: {}
+    interviewers: {},
+    spots: 5
   });
+
   const setDay = day => setState({ ...state, day });
+
+  function updateDaySpots(ammount) {
+    const newDays = [...state.days];
+    const currentDay = newDays.find((day) => {
+      return state.day === day.name;
+    });
+    currentDay.spots = currentDay.spots + ammount;
+    return newDays;
+  }
 
   function bookInterview(id, interview) {
     const appointment = {
@@ -25,13 +36,20 @@ export default function useApplicationData(initial) {
       .then((response) => {
         setState({
           ...state,
-          appointments: appointments
+          appointments: appointments,
+          days: updateDaySpots(-1)
         });
       });
   }
 
   function cancelInterview(id, interview = null) {
-    return axios.delete(`/api/appointments/${id}`, interview);
+    return axios.delete(`/api/appointments/${id}`, interview)
+      .then((response) => {
+        setState({
+          ...state,
+          days: updateDaySpots(+1)
+        });
+      });
   }
 
   useEffect(() => {
@@ -49,5 +67,5 @@ export default function useApplicationData(initial) {
       });
   }, []);
 
-  return {setDay, state, bookInterview, cancelInterview}
+  return { setDay, state, bookInterview, cancelInterview };
 }
