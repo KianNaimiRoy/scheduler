@@ -17,7 +17,7 @@ test("useVisualMode should return to previous mode", () => {
 
   act(() => result.current.back());
   expect(result.current.mode).toBe(SECOND);
-
+  
   act(() => result.current.back());
   expect(result.current.mode).toBe(FIRST);
 });
