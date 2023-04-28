@@ -25,7 +25,7 @@ npm run storybook
 
 ## Screen Shots
 
-!"[The main page of our interview scheduler]"https://github.com/KianNaimiRoy/scheduler/blob/master/docs/mainPage.png?raw=true
+The main page of our interview scheduler https://github.com/KianNaimiRoy/scheduler/blob/master/docs/mainPage.png?raw=true
 
 !"[Creating a new appointment]"https://github.com/KianNaimiRoy/scheduler/blob/master/docs/creatingAppointment.png?raw=true
 
