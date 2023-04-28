@@ -15,7 +15,6 @@ export default function useApplicationData() {
   function updateDaySpots(state, appointments) {
 
     const dayObj = state.days.find(d => d.name === state.day);
-    // const dayObj = state.days[index];
     
 
     let spots = 0;
@@ -27,12 +26,6 @@ export default function useApplicationData() {
 
     const day = {...dayObj, spots};
     const newDays = state.days.map(d => d.name === state.day ? day : d);
-
-    // const newDays = [...state.days];
-    // const currentDay = newDays.find((day) => {
-    //   return state.day === day.name;
-    // });
-    // currentDay.spots = currentDay.spots + ammount;
 
     return newDays;
   }
