@@ -25,7 +25,11 @@ export default function useVisualMode(initial) {
       if (prev.length > 1) {
         historyArray.pop();
         const lastItem = historyArray[historyArray.length - 1];
+        if(lastItem !== "EMPTY"){
+          setMode("SHOW")
+        }else {
         setMode(lastItem);
+        }
       }
 
       return historyArray;
