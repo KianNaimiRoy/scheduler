@@ -57,11 +57,11 @@ export default function useApplicationData() {
 
     return axios.put(`/api/appointments/${id}`, { interview })
       .then((response) => {
-        setState({
-          ...state,
+        setState((prev) => ({
+          ...prev,
           appointments: appointments,
-          days: updateDaySpots(state, appointments)
-        });
+          days: updateDaySpots(prev, appointments)
+        }));
       });
   }
 
@@ -76,10 +76,11 @@ export default function useApplicationData() {
     };
     return axios.delete(`/api/appointments/${id}`, interview)
       .then((response) => {
-        setState({
-          ...state,
-          days: updateDaySpots(state, appointments)
-        });
+        setState((prev)=>({
+          ...prev,
+          appointments: appointments,
+          days: updateDaySpots(prev, appointments)
+        }));
       });
   }
 

@@ -2,18 +2,18 @@ import { useState } from "react";
 
 
 export default function useVisualMode(initial) {
-  const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
 
   const transition = (newMode, replace = false) => {
     const newHistory = [...history];
-    setMode((prev) => newMode);
+  
 
     setHistory((prev) => {
+      const historyArray = [...prev];
       if (replace) {
-        prev.pop();
+        historyArray.pop();
       }
-      return [...prev, newMode];
+      return [...historyArray, newMode];
     });
   };
 
@@ -24,17 +24,12 @@ export default function useVisualMode(initial) {
 
       if (prev.length > 1) {
         historyArray.pop();
-        const lastItem = historyArray[historyArray.length - 1];
-        if(lastItem !== "EMPTY"){
-          setMode("SHOW")
-        }else {
-        setMode(lastItem);
-        }
+       
       }
 
       return historyArray;
     });
   };
 
-  return { mode, transition, back };
+  return { mode: history[history.length-1], transition, back };
 }

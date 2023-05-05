@@ -31,7 +31,7 @@ export default function Appointment(props) {
       interviewer
     };
 
-    transition(SAVING, true);
+    transition(SAVING);
 
     props
       .bookInterview(props.id, interview)
@@ -42,7 +42,7 @@ export default function Appointment(props) {
 
   function cancel() {
 
-    transition(DELETING, true);
+    transition(DELETING);
 
     props
       .cancelInterview(props.id)
@@ -99,7 +99,7 @@ export default function Appointment(props) {
 
       {mode === ERROR_SAVE && (
         <Error
-          onClose={() => transition(EDIT)}
+          onClose={ back }
           message={"Could not save your appointment"} />
       )}
 
